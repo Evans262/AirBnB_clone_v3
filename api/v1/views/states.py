@@ -64,7 +64,7 @@ def post_state():
     return make_response(jsonify(new_state.to_dict()), 201)
 
 
-@app_views.route('/places/<place_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/api/v1/places/<place_id>', methods=['PUT'], strict_slashes=False)
 def put_place(place_id):
     """update a state"""
     state = storage.get(State, state_id)
