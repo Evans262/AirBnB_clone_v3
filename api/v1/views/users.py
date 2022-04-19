@@ -41,7 +41,7 @@ def del_state(users_id):
 @app_views.route('/api/v1/users/<users_id>', methods=['PUT'],
                  strict_slashes=False)
 def update_users(users_id):
-    """ Task 7 :Updates a State object:"""
+    """Updates a State object:"""
     content = request.get_json()
     if content is None:
         abort(400, 'Not a JSON')
@@ -61,8 +61,10 @@ def post_users():
     """create a new users"""
     if not request.get_json():
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
-    if "name" not in request.get_json():
-        return make_response(jsonify({'error': 'Missing name'}), 400)
+    if "email" not in request.get_json():
+        return make_response(jsonify({'error': 'Missing email'}), 400)
+    if "password" not in request.get_json():
+        return make_response(jsonify({'error': 'Missing password'}), 400)
     new_users = users(**request.get_json())
     new_users.save()
     return make_response(jsonify(new_users.to_dict()), 201)
