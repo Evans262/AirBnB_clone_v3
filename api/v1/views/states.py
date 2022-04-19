@@ -6,8 +6,8 @@ from models import storage
 from models.state import State
 
 
-@app_views.route('/states', methods=['GET'], strict_slashes=False)
-@app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/api/v1/states', methods=['GET'], strict_slashes=False)
+@app_views.route('/api/v1/states/<state_id>', methods=['GET'], strict_slashes=False)
 def show(state_id=None):
     """return All states objects by id"""
     if not state_id:
@@ -24,7 +24,7 @@ def show(state_id=None):
         return jsonify(state.to_dict())
 
 
-@app_views.route("/states/<state_id>", methods=['DELETE'],
+@app_views.route("/api/v1/states/<state_id>", methods=['DELETE'],
                  strict_slashes=False)
 def del_state(state_id):
     """Delete a State object"""
@@ -36,7 +36,7 @@ def del_state(state_id):
     abort(404)
 
 
-@app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/api/v1/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def update_state(state_id):
     """ Task 7 :Updates a State object:"""
     content = request.get_json()
@@ -52,7 +52,7 @@ def update_state(state_id):
     return jsonify(state.to_dict()), 200
 
 
-@app_views.route('/states/', methods=['POST'], strict_slashes=False)
+@app_views.route('/api/v1/states', methods=['POST'], strict_slashes=False)
 def post_state():
     """create a new state"""
     if not request.get_json():
