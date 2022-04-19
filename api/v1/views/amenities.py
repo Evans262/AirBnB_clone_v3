@@ -6,7 +6,7 @@ from models import storage
 from models.amenity import Amenity
 
 
-@app_views.route('/amenities', methods=['GET'],
+@app_views.route('/api/v1/amenities', methods=['GET'],
                  strict_slashes=False)
 def ret_amenities():
     """ Retrieves amenities """
@@ -16,7 +16,7 @@ def ret_amenities():
     return jsonify(list_amenieties)
 
 
-@app_views.route('/amenities/<amenity_id>', methods=['GET'],
+@app_views.route('/api/v1/amenities/<amenity_id>', methods=['GET'],
                  strict_slashes=False)
 def ret_amenity(amenity_id):
     """ Retrieves an amenity """
@@ -26,7 +26,7 @@ def ret_amenity(amenity_id):
     return jsonify(single_amenity.to_dict())
 
 
-@app_views.route("/amenities/<amenity_id>", methods=['DELETE'],
+@app_views.route("/api/v1/amenities/<amenity_id>", methods=['DELETE'],
                  strict_slashes=False)
 def del_state(amenity_id):
     """Delete a amenity object"""
@@ -38,7 +38,7 @@ def del_state(amenity_id):
     abort(404)
 
 
-@app_views.route('/amenities/<amenity_id>', methods=['PUT'],
+@app_views.route('/api/v1/amenities/<amenity_id>', methods=['PUT'],
                  strict_slashes=False)
 def update_amenity(amenity_id):
     """ Task 7 :Updates a State object:"""
@@ -55,7 +55,8 @@ def update_amenity(amenity_id):
     return jsonify(amenity_up.to_dict()), 200
 
 
-@app_views.route('/amenities/', methods=['POST'], strict_slashes=False)
+@app_views.route('/api/v1/amenities/', methods=['POST'],
+                 strict_slashes=False)
 def post_amenity():
     """create a new amenity"""
     if not request.get_json():
