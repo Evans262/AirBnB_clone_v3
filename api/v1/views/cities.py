@@ -5,7 +5,7 @@ from api.v1.views import app_views
 from models import storage, city, state
 
 
-@app_views.route('/states/<state_id>/cities', methods=['GET'],
+@app_views.route('/api/v1/states/<state_id>/cities', methods=['GET'],
                  strict_slashes=False)
 def get_cities(state_id):
     """ Retrieves the list of all City objects of a State"""
@@ -16,7 +16,7 @@ def get_cities(state_id):
     return (jsonify(cities), 200)
 
 
-@app_views.route('/cities/<city_id>', methods=['DELETE'],
+@app_views.route('/api/v1/cities/<city_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_city(city_id):
     """ Deletes a City object:  """
@@ -29,7 +29,7 @@ def delete_city(city_id):
     abort(404)
 
 
-@app_views.route("/cities/<city_id>", methods=['PUT'], strict_slashes=False)
+@app_views.route("/api/v1/cities/<city_id>", methods=['PUT'], strict_slashes=False)
 def put_city(city_id):
     """ Updates a City object """
     content = request.get_json()
