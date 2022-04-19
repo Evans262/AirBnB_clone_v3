@@ -7,7 +7,8 @@ from models.state import State
 
 
 @app_views.route('/api/v1/states', methods=['GET'], strict_slashes=False)
-@app_views.route('/api/v1/states/<state_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/api/v1/states/<state_id>', methods=['GET'],
+                 strict_slashes=False)
 def show(state_id=None):
     """return All states objects by id"""
     if not state_id:
@@ -36,9 +37,10 @@ def del_state(state_id):
     abort(404)
 
 
-@app_views.route('/api/v1/states/<state_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/api/v1/states/<state_id>', methods=['PUT'],
+                 strict_slashes=False)
 def update_state(state_id):
-    """ Task 7 :Updates a State object:"""
+    """Updates a State object:"""
     content = request.get_json()
     if content is None:
         abort(400, 'Not a JSON')
@@ -64,7 +66,8 @@ def post_state():
     return make_response(jsonify(new_state.to_dict()), 201)
 
 
-@app_views.route('/api/v1/places/<place_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/api/v1/places/<place_id>', methods=['PUT'],
+                 strict_slashes=False)
 def put_place(place_id):
     """update a state"""
     state = storage.get(State, state_id)
